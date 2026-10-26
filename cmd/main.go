@@ -1,5 +1,18 @@
 package main
 
-func main() {
+import (
+	"log"
+	"os"
 
+	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/server"
+)
+
+func main() {
+	logger := log.New(os.Stdout, "MORSE-SERVER: ", log.Ldate|log.Ltime)
+
+	srv := server.New(logger)
+
+	if err := srv.Start(); err != nil {
+		logger.Fatal("Ошибка при запуске сервера: ", err)
+	}
 }
